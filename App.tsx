@@ -7,7 +7,7 @@ declare global {
   }
 }
 
-const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/FGYq6kNiNxZ1fgJzGwqG64";
+const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/Jc4EwuT4xLmHmQtjIoQK1f";
 
 // Fix: Replaced JSX.Element with React.ReactNode to resolve the "Cannot find namespace 'JSX'" error.
 const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; description: string }> = ({ icon, title, description }) => (
