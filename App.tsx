@@ -1,0 +1,99 @@
+import React from 'react';
+
+const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/FGYq6kNiNxZ1fgJzGwqG64";
+
+// Fix: Replaced JSX.Element with React.ReactNode to resolve the "Cannot find namespace 'JSX'" error.
+const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; description: string }> = ({ icon, title, description }) => (
+  <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl text-center flex flex-col items-center shadow-lg transition-transform duration-300 hover:scale-105">
+    <div className="mb-4 text-emerald-300">{icon}</div>
+    <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
+    <p className="text-gray-200">{description}</p>
+  </div>
+);
+
+const App: React.FC = () => {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-teal-900 to-gray-900 text-white font-[Cairo,sans-serif]">
+      <main className="container mx-auto px-4 py-8 sm:py-16">
+        <div className="max-w-4xl mx-auto text-center">
+
+          <div className="mb-8">
+            <span className="inline-block bg-emerald-500 text-white text-sm font-semibold px-4 py-1 rounded-full">
+              حصرياً للسيدات
+            </span>
+          </div>
+
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight tracking-tight">
+            حققي استقلالكِ المادي من راحة منزلك
+          </h1>
+
+          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+            فرصة حقيقية للانضمام إلى فريق عمل نسائي ناجح. ابدئي رحلتك نحو تحقيق أهدافك المالية والشخصية بمرونة تامة.
+          </p>
+
+          <div className="mb-12">
+            <a
+              href={WHATSAPP_GROUP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-emerald-500 text-white font-bold text-xl px-12 py-4 rounded-full shadow-lg shadow-emerald-500/30 transform transition-all duration-300 hover:bg-emerald-400 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-emerald-300"
+            >
+              <div className="flex items-center justify-center space-x-3 rtl:space-x-reverse">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.487 5.235 3.487 8.413 0 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.456l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.447-4.435-9.884-9.888-9.884-5.448 0-9.886 4.434-9.889 9.885.002 2.024.63 3.965 1.739 5.618l.16.254-1.103 4.029 4.138-1.082.254.16z" />
+                </svg>
+                <span>انضمي الآن عبر الواتساب</span>
+              </div>
+            </a>
+            <p className="text-sm text-gray-400 mt-4">المقاعد محدودة. انضمي قبل اكتمال العدد!</p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <FeatureCard
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+              }
+              title="عمل من المنزل"
+              description="أديري عملكِ بالكامل من أي مكان يناسبكِ."
+            />
+            <FeatureCard
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              }
+              title="أوقات عمل مرنة"
+              description="نظام عمل يتناسب مع مسؤولياتكِ والتزاماتكِ الأخرى."
+            />
+            <FeatureCard
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              }
+              title="أرباح متنامية"
+              description="فرص حقيقية لزيادة دخلكِ وتحقيق أرباح مجزية."
+            />
+            <FeatureCard
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              }
+              title="دعم وتدريب"
+              description="نقدم لكِ تدريبًا شاملاً ودعمًا مستمرًا لضمان نجاحك."
+            />
+          </div>
+        </div>
+      </main>
+
+      <footer className="text-center py-6">
+        <p className="text-gray-400 text-sm">&copy; {new Date().getFullYear()}. كل الحقوق محفوظة.</p>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
