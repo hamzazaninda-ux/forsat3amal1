@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 // TypeScript declaration for the TikTok Pixel function on the window object
 declare global {
@@ -19,7 +19,6 @@ const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; description:
 );
 
 const App: React.FC = () => {
-  const [countdown, setCountdown] = useState(3);
 
   // Function to handle the click and track the event
   const handleJoinClick = () => {
@@ -30,19 +29,14 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    if (countdown <= 0) {
+    const timer = setTimeout(() => {
       handleJoinClick(); // Track the event before redirecting
       window.location.href = WHATSAPP_GROUP_LINK;
-      return;
-    }
+    }, 500); // Redirect after 0.5 seconds
 
-    const timer = setInterval(() => {
-      setCountdown((prevCountdown) => prevCountdown - 1);
-    }, 1000);
-
-    // Cleanup the interval on component unmount
-    return () => clearInterval(timer);
-  }, [countdown]);
+    // Cleanup the timeout on component unmount
+    return () => clearTimeout(timer);
+  }, []); // Empty dependency array ensures this runs only once on mount
 
 
   return (
@@ -65,32 +59,18 @@ const App: React.FC = () => {
           </p>
 
           <div className="mb-12">
-            <a
-              href={WHATSAPP_GROUP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={handleJoinClick} // Added onClick handler
-              className="group inline-block bg-emerald-500 text-white font-bold text-xl px-12 py-4 rounded-full shadow-lg shadow-emerald-500/30 transform transition-all duration-300 hover:bg-emerald-400 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-emerald-300"
-            >
-              <div className="flex items-center justify-center space-x-3 rtl:space-x-reverse">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-125" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.487 5.235 3.487 8.413 0 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.456l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.447-4.435-9.884-9.888-9.884-5.448 0-9.886 4.434-9.889 9.885.002 2.024.63 3.965 1.739 5.618l.16.254-1.103 4.029 4.138-1.082.254.16z" />
-                </svg>
-                <span>انضمي الآن عبر الواتساب</span>
-              </div>
-            </a>
-            <p className="text-sm text-gray-400 mt-4">المقاعد محدودة. انضمي قبل اكتمال العدد!</p>
-
-            {/* Countdown Timer */}
+             {/* Redirect Message */}
             <div className="mt-8">
               <p className="text-lg text-gray-300 animate-pulse">
                 ... جاري توجيهك تلقائيًا للإنضمام
               </p>
-              <div className="mt-2 text-6xl font-bold text-white" style={{fontVariantNumeric: 'tabular-nums'}}>
-                {countdown}
+              <div className="mt-4">
+                  <svg className="animate-spin h-10 w-10 text-emerald-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
               </div>
             </div>
-
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
