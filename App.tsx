@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 // TypeScript declaration for the TikTok Pixel function on the window object
 declare global {
@@ -7,7 +7,7 @@ declare global {
   }
 }
 
-const WHATSAPP_GROUP_LINK = "https://wa.me/212641369840";
+const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/KlonXD68AEV0Nedmq64st1";
 
 // Fix: Replaced JSX.Element with React.ReactNode to resolve the "Cannot find namespace 'JSX'" error.
 const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; description: string }> = ({ icon, title, description }) => (
@@ -19,6 +19,8 @@ const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; description:
 );
 
 const App: React.FC = () => {
+  const [countdown, setCountdown] = useState(3);
+
   // Function to handle the click and track the event
   const handleJoinClick = () => {
     if (window.ttq) {
@@ -26,6 +28,22 @@ const App: React.FC = () => {
       window.ttq.track('SubmitForm');
     }
   };
+
+  useEffect(() => {
+    if (countdown <= 0) {
+      handleJoinClick(); // Track the event before redirecting
+      window.location.href = WHATSAPP_GROUP_LINK;
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setCountdown((prevCountdown) => prevCountdown - 1);
+    }, 1000);
+
+    // Cleanup the interval on component unmount
+    return () => clearInterval(timer);
+  }, [countdown]);
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-teal-900 to-gray-900 text-white font-[Cairo,sans-serif]">
@@ -62,6 +80,17 @@ const App: React.FC = () => {
               </div>
             </a>
             <p className="text-sm text-gray-400 mt-4">المقاعد محدودة. انضمي قبل اكتمال العدد!</p>
+
+            {/* Countdown Timer */}
+            <div className="mt-8">
+              <p className="text-lg text-gray-300 animate-pulse">
+                ... جاري توجيهك تلقائيًا للإنضمام
+              </p>
+              <div className="mt-2 text-6xl font-bold text-white" style={{fontVariantNumeric: 'tabular-nums'}}>
+                {countdown}
+              </div>
+            </div>
+
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
